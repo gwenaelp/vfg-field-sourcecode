@@ -11,6 +11,8 @@
 
 > A source code field for vue-form-generator
 
+![Preview](https://github.com/gwenaelp/vfg-field-sourcecode/blob/master/docs/preview.png)
+
 > Generated using [vue-cli-template-library](https://github.com/julon/vue-cli-template-library).
 
 ## Installation
