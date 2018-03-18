@@ -10,6 +10,9 @@ import "codemirror/mode/vue/vue.js";
 import VueFormGenerator from "vue-form-generator";
 
 import { codemirror } from "vue-codemirror";
+require("codemirror/lib/codemirror.css");
+require("codemirror/theme/eclipse.css");
+
 export default {
   mixins: [VueFormGenerator.abstractField],
   components: {
@@ -37,8 +40,6 @@ export default {
 };
 </script>
 <style>
-@import "~codemirror/lib/codemirror.css";
-@import "~codemirror/theme/eclipse.css";
 
 .CodeMirror {
   width: 500px;

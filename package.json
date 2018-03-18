@@ -1,7 +1,7 @@
 {
   "name": "vfg-field-sourcecode",
   "description": "A source code field for vue-form-generator",
-  "version": "0.0.0-development",
+  "version": "0.0.1-development",
   "license": "MIT",
   "main": "dist/vfg-field-sourcecode.common.js",
   "module": "dist/vfg-field-sourcecode.esm.js",
