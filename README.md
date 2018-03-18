@@ -26,12 +26,12 @@ When in non-modular environment, vfg-field-sourcecode will register all the comp
 //
 // You can register a component manually
 //
-import { HelloWorld } from 'vfg-field-sourcecode';
+import { FieldSourcecode } from 'vfg-field-sourcecode';
 
 export default {
   ...
   components: {
-    HelloWorld
+    'field-sourcecode': FieldSourcecode
   },
   ...
 };
@@ -56,7 +56,7 @@ var ModuleLibrary = require('vfg-field-sourcecode');
 var YourComponent = Vue.extend({
   ...
   components: {
-    'hello-world': ModuleLibrary.HelloWorld
+    'field-sourcecode': ModuleLibrary.FieldSourcecode
   },
   ...
 });
@@ -79,10 +79,18 @@ Vue.use(ModuleLibrary);
 <!-- Components are registered globally -->
 ```
 
-### After that, you can use it in your templates:
+### After that, you can use it with Vue Form Generator:
 
-```html
-<hello-world></hello-world>
+```json
+  schema: {
+    fields: [
+      {
+        type: "sourcecode",
+        label: "source code",
+        model: "source"
+      }
+    ]
+  }
 ```
 
 ## Changelog
