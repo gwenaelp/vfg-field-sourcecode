@@ -11,9 +11,33 @@
 
 > A source code field for vue-form-generator
 
+## Example
+
 ![Preview](https://github.com/gwenaelp/vfg-field-sourcecode/blob/master/docs/preview.png)
 
-> Generated using [vue-cli-template-library](https://github.com/julon/vue-cli-template-library).
+```
+<template>
+  <vue-form-generator :schema="schema" :model="model"></vue-form-generator>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      model: {
+        source: `<template></template>`
+      },
+      schema: {
+        fields: [{
+          type: "sourcecode",
+          label: "source code",
+          model: "source"
+        }]
+      }
+    };
+  }
+};
+</script>
+```
 
 ## Installation
 ```
