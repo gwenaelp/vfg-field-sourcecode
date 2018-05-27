@@ -34,7 +34,8 @@ export default {
 
   mounted() {
     setTimeout(() => {
-      this.$refs.editor.codemirror.refresh();
+      if(this.$refs.editor && this.$refs.editor.codemirror)
+        this.$refs.editor.codemirror.refresh();
     }, 1000);
   }
 };
