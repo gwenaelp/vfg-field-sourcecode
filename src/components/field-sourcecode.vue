@@ -1,6 +1,6 @@
 <template>
   <div>
-    <codemirror v-model="value" :options="cmOptions" ref="editor"></codemirror>
+    <codemirror v-model="value" :options="codeMirrorOptions" ref="editor"></codemirror>
   </div>
 </template>
 
@@ -11,37 +11,41 @@ import VueFormGenerator from "vue-form-generator";
 
 import { codemirror } from "vue-codemirror";
 require("codemirror/lib/codemirror.css");
-require("codemirror/theme/eclipse.css");
 
 export default {
   mixins: [VueFormGenerator.abstractField],
   components: {
     codemirror
   },
+  computed: {
+    codeMirrorOptions() {
+      // Allows setting of CodeMirror options, including setting theme
+      // http://codemirror.net/doc/manual.html#config
 
-  data() {
-    return {
-      cmOptions: {
-        // codemirror options
-        taPbSize: 4,
-        mode: "text/x-vue",
-        theme: "eclipse",
-        lineNumbers: true,
-        line: true
+      if (this.schema.hasOwnProperty("codeMirrorOptions")) {
+        // Load theme css, if specified in codeMirrorOptions
+        if (this.schema.codeMirrorOptions.hasOwnProperty("theme")) {
+          require("codemirror/theme/" +
+            this.schema.codeMirrorOptions.theme +
+            ".css");
+        }
+
+        return this.schema.codeMirrorOptions;
+      } else {
+        return {};
       }
-    };
+    }
   },
-
   mounted() {
     setTimeout(() => {
-      if(this.$refs.editor && this.$refs.editor.codemirror)
+      if (this.$refs.editor && this.$refs.editor.codemirror)
         this.$refs.editor.codemirror.refresh();
     }, 1000);
   }
 };
 </script>
-<style>
 
+<style>
 .CodeMirror {
   width: 500px;
   height: 120px;
@@ -50,5 +54,4 @@ export default {
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
   font-size: 80%;
 }
-
 </style>
