@@ -23,14 +23,38 @@ export default {
       // http://codemirror.net/doc/manual.html#config
 
       if (this.schema.hasOwnProperty("codeMirrorOptions")) {
+        const cmOptions = this.schema.codeMirrorOptions;
+
         // Load theme css, if specified in codeMirrorOptions
-        if (this.schema.codeMirrorOptions.hasOwnProperty("theme")) {
-          require("codemirror/theme/" +
-            this.schema.codeMirrorOptions.theme +
-            ".css");
+        if (cmOptions.hasOwnProperty("theme")) {
+          try {
+            require("codemirror/theme/" + cmOptions.theme + ".css");
+          } catch (e) {
+            console.log({ e });
+          }
         }
 
-        return this.schema.codeMirrorOptions;
+        if (cmOptions.hasOwnProperty("mode")) {
+          let modeName = "";
+
+          if (
+            typeof cmOptions.mode === "object" &&
+            cmOptions.mode.hasOwnProperty("name")
+          ) {
+            modeName = cmOptions.mode.name;
+          } else if (typeof cmOptions.mode === "string") {
+            modeName = cmOptions.mode;
+          }
+
+          // Load the mode js, if specified in codeMirrorOptions
+          try {
+            require("codemirror/mode/" + modeName + "/" + modeName + ".js");
+          } catch (e) {
+            console.log({ e });
+          }
+        }
+
+        return cmOptions;
       } else {
         return {};
       }
@@ -51,7 +75,7 @@ export default {
   height: 120px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   font-size: 80%;
 }
 </style>

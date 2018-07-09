@@ -15,7 +15,7 @@
 
 ![Preview](https://github.com/gwenaelp/vfg-field-sourcecode/blob/master/docs/preview.png)
 
-```
+```vue
 <template>
   <vue-form-generator :schema="schema" :model="model"></vue-form-generator>
 </template>
@@ -30,7 +30,12 @@ export default {
         fields: [{
           type: "sourcecode",
           label: "source code",
-          model: "source"
+          model: "source",
+          theme: 'eclipse',
+          mode: {
+            name: "javascript",
+            json: true
+          }
         }]
       }
     };
@@ -48,7 +53,7 @@ vfg-field-sourcecode can be used as a module in both CommonJS and ES modular env
 When in non-modular environment, vfg-field-sourcecode will register all the components to vue by itself.</p>
 
 ### ES6
-```js
+```vue
 //
 // You can register a component manually
 //
@@ -72,7 +77,7 @@ Vue.use(ModuleLibrary);
 ```
 
 ### CommonJS
-```js
+```vue
 //
 // You can register a component manually
 //
@@ -107,17 +112,27 @@ Vue.use(ModuleLibrary);
 
 ### After that, you can use it with Vue Form Generator:
 
-```json
+```js
   schema: {
     fields: [
       {
         type: "sourcecode",
         label: "source code",
-        model: "source"
+        model: "source",
+        theme: 'monokai',
+        mode: "ruby"
       }
     ]
   }
 ```
+
+## CodeMirror Options
+
+Any supported CodeMirror option can be passed in the `schema`. Available options are shown [here](http://codemirror.net/doc/manual.html#config).
+
+### Special note about `mode` option
+
+When setting the `mode` option in the schema, `vfg-field-sourcecode` will automatically load the JS for the specified mode. This currently only works if you set the mode by name, *not* by mime type. Mode can either by set as as string, eg: `mode: python`, or as an object, which is required if that mode supports options you want to set - eg: `mode: { name: 'javascript', json: true }`. See [here](http://codemirror.net/doc/manual.html#option_mode) for more details.
 
 ## Changelog
 

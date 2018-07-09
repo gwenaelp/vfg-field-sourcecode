@@ -72,7 +72,7 @@ storiesOf("field-sourcecode", module).add("Story as a template", () => {
               label: "source code",
               model: "source",
               codeMirrorOptions: {
-                mode: "text/x-vue"
+                mode: "vue"
               }
             }
           ]
@@ -98,7 +98,10 @@ storiesOf("field-sourcecode", module).add("Change mode to JSON", () => {
               label: "source code",
               model: "source",
               codeMirrorOptions: {
-                mode: "application/json"
+                mode: {
+                  name: "javascript",
+                  json: true
+                }
               }
             }
           ]
@@ -124,7 +127,7 @@ storiesOf("field-sourcecode", module).add("Use Monokai theme", () => {
               label: "source code",
               model: "source",
               codeMirrorOptions: {
-                mode: "text/x-vue",
+                mode: "vue",
                 theme: "monokai"
               }
             }
